@@ -1,0 +1,4 @@
+[flake8]
+# we ignore F999 because we like module level * import
+# 501 because I will decide when a line is too long, damnit
+ignore = F999, E501, F405

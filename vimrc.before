@@ -1,0 +1,47 @@
+let mapleader = ","
+
+" jj == ESC
+inoremap jj <ESC>
+
+nnoremap <leader><space> :noh<cr>
+
+" split window mapping
+nnoremap <leader>w <C-w>v<C-w>l
+nnoremap <leader>s <C-w>s<C-w>j
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+
+" force proper home key use
+inoremap <up> <nop>
+inoremap <down> <nop>
+inoremap <left> <nop>
+inoremap <right> <nop>
+nnoremap j gj
+nnoremap k gk
+
+" highlight long lines
+:highlight Over80 ctermbg=Gray ctermfg=Black guibg=White guifg=Black
+":au BufWinEnter * let w:m2=matchadd('Over80', '\%>79v.\+', -1)
+:au BufWinEnter * let m = matchadd("ErrorMsg", '\%>119v.\+')
+
+" kill syntastic
+call janus#disable_plugin('syntastic')
+
+" ale options
+"let g:ale_lint_on_text_changed = 'never' " only run after modifying in given mode
+let g:ale_lint_delay = 1200 " wait X ms before running
+let g:ale_set_highlights = 0
+" You can disable this option too
+" if you don't want linters to run on opening a file
+let g:ale_lint_on_enter = 0
+
+" some python stuff
+au BufNewFile,BufRead *.py
+    \ set tabstop=4 |
+    \ set softtabstop=4 |
+    \ set shiftwidth=4 |
+    \ set expandtab |
+    \ set autoindent |
+    \ set fileformat=unix

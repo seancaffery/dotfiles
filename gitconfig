@@ -1,0 +1,29 @@
+[core]
+	excludesfile = ~/.gitignore
+  editor=/usr/bin/vim
+
+[hub]
+protocol = https
+[color]
+    ui = true
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
+[alias]
+    l = log --graph --format=\"%C(yellow)%h %C(green)%d%Creset %s %C(blue)%an, %ai\"
+
+[push]
+    default = current
+[branch]
+    autosetuprebase = always
+[diff]
+	compactionHeuristic = true
+[commit]
+	template = ~/.stCommitMsg
+[rerere]
+	enabled = true
+[rebase]
+	autoStash = true

@@ -1,0 +1,34 @@
+" Run a given vim command on the results of fuzzy selecting from a given shell
+" command. See usage below.
+function! SelectaCommand(choice_command, selecta_args, vim_command)
+  try
+    let selection = system(a:choice_command . " | selecta " . a:selecta_args)
+  catch /Vim:Interrupt/
+    " Swallow the ^C so that the redraw below happens; otherwise there will be
+    " leftovers from selecta on the screen
+    redraw!
+    return
+  endtry
+  redraw!
+  exec a:vim_command . " " . selection
+endfunction
+
+function! PassengerRestart()
+  let blah = system("touch tmp/restart.txt")
+endfunction
+
+" Find all files in all non-dot directories starting in the working directory.
+" Fuzzy select one of those. Open the selected file with :e.
+nnoremap <C-p> :call SelectaCommand("find * -type f ! -path 'npm-packages-offline-cache/*' ! -path 'vendor/bundle/*' ! -path '*/fonts/*' ! -path 'tmp/*' ! -path 'dist/*' ! -path 'vendor/assets/*'  ! -path '*egg-info*' ! -path 'virtual_env/*'  ! -path '*.pyc' ! -path 'node_modules/*' ! -path '*.gem' ! -path '*.swp' ! -path '*images*' ! -path '*.class' ! -path 'app/assets/media*' ! -path 'app/assets/images*' ! -path '*/cache/*' ! -path 'vendor/*' ! -path 'bower_components/*' ", "", ":e")<cr>
+nnoremap <leader>r :call PassengerRestart()<cr>
+
+" syntastic options
+let g:syntastic_ruby_checkers=['rubocop']
+let g:syntastic_python_checkers = ['flake8']
+let g:syntastic_echo_current_error=1
+let g:syntastic_check_on_open = 0
+let g:syntastic_auto_loc_list = 0
+let g:syntastic_mode_map = {'mode': 'active'}
+
+
+au BufRead,BufNewFile *.txt.erb set wrap linebreak nolist textwidth=0 wrapmargin=0

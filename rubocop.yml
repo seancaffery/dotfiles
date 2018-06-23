@@ -1,0 +1,14 @@
+LineLength:
+  Max: 120
+
+HashSyntax:
+  Enabled: false
+
+NumericLiterals:
+  Enabled: false
+
+IfUnlessModifier:
+  Enabled: false
+
+Bundler/OrderedGems:
+  Enabled: false
