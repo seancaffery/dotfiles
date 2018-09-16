@@ -89,7 +89,7 @@ zeust () {
 }
 
 function prj() {
-  cd $(find ~/code -maxdepth 2 -type d | selecta)
+  cd $({ find ~/code -maxdepth 2 -type d & find ~/code/go/src/github.com -maxdepth 2 -type d } | selecta)
   zle reset-prompt
 }
 zle -N prj
@@ -102,6 +102,7 @@ RPROMPT='$(vi_mode_prompt_info) [%*]'
 virtual_env='$(basename "$CONDA_DEFAULT_ENV") '
 PROMPT="${virtual_env}$PROMPT"
 
+eval "$(goenv init -)"
 eval "$(rbenv init - --no-rehash)"
 alias vim='mvim -v'
 alias vi='mvim -v'
