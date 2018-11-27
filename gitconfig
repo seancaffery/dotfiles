@@ -27,3 +27,5 @@ protocol = https
 	enabled = true
 [rebase]
 	autoStash = true
+[pull]
+  ff = only
