@@ -21,6 +21,7 @@ protocol = https
     autosetuprebase = always
 [diff]
 	compactionHeuristic = true
+	noprefix = true
 [commit]
 	template = ~/.stCommitMsg
 [rerere]
