@@ -102,7 +102,6 @@ RPROMPT='$(vi_mode_prompt_info) [%*]'
 virtual_env='$(basename "$CONDA_DEFAULT_ENV") '
 PROMPT="${virtual_env}$PROMPT"
 
-eval "$(goenv init -)"
 eval "$(rbenv init - --no-rehash)"
 alias vim='mvim -v'
 alias vi='mvim -v'
