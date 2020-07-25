@@ -107,7 +107,6 @@ alias vim='mvim -v'
 alias vi='mvim -v'
 alias bi='bundle check || bundle install --local --quiet && echo "Bundle complete"'
 alias cr='crystal run --release'
-alias startvm='zdi vm start && zdi services restart'
 unalias irb
 export PKG_CONFIG_PATH='/usr/local/opt/openssl/lib/pkgconfig'
 autoload -U add-zsh-hook
