@@ -10,3 +10,4 @@ export GOENV_ROOT="$HOME/.goenv"
 export PATH="$GOENV_ROOT/bin:$PATH"
 export PATH="$GOROOT/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
+export HOMEBREW_NO_AUTO_UPDATE=1
