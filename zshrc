@@ -45,7 +45,7 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(tmux git gitfast ruby rails rake pep8 bundler colorize lein vi-mode docker)
+plugins=(tmux git gitfast ruby rails rake bundler colorize vi-mode docker)
 # User configuration
 
 export PATH="$HOME.pyenv/shims:$PATH:$HOME/miniconda/bin:$HOME/bin:/usr/local/heroku/bin:$HOME/anaconda/bin:/usr/local/bin:bin:node_modules/.bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/share/npm/bin"
