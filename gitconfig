@@ -32,3 +32,6 @@ protocol = https
   ff = only
 [url "git@github.com:"]
 	insteadOf = https://github.com/
+[user]
+	name = Sean Caffery
+	email = sean@lineonpoint.com
