@@ -48,7 +48,7 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 plugins=(tmux git gitfast bundler colorize vi-mode docker)
 # User configuration
 
-export PATH="$HOME.pyenv/shims:$PATH:$HOME/miniconda/bin:$HOME/bin:/usr/local/heroku/bin:$HOME/anaconda/bin:/usr/local/bin:bin:node_modules/.bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/share/npm/bin"
+export PATH="$PATH:$HOME/miniconda/bin:$HOME/bin:/usr/local/heroku/bin:$HOME/anaconda/bin:/usr/local/bin:bin:node_modules/.bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/share/npm/bin"
 
 export ZSH_COMPDUMP="${ZDOTDIR:-${HOME}}/.zcompdump-${HOST}-${ZSH_VERSION}"
 source $ZSH/oh-my-zsh.sh
