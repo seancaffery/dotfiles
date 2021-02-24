@@ -99,8 +99,7 @@ bindkey "^P" "prj"
 export GIT_PAGER="less -SFEX"
 export EDITOR='vim'
 RPROMPT='$(vi_mode_prompt_info) [%*]'
-virtual_env='$(basename "$CONDA_DEFAULT_ENV") '
-PROMPT="${virtual_env}$PROMPT"
+PROMPT="$PROMPT"
 
 eval "$(rbenv init - --no-rehash)"
 alias vim='mvim -v'
