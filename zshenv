@@ -1,7 +1,6 @@
+typeset -U path
 export GOPATH="$HOME/code/go"
-export PATH="$PATH:$GOPATH/bin"
 export GOENV_ROOT="$HOME/.goenv"
-export PATH="$GOENV_ROOT/bin:$PATH"
-export PATH="$GOROOT/bin:$PATH"
-export PATH="$HOME/.cargo/bin:$PATH"
-export HOMEBREW_AUTO_UPDATE_SECS=86400
+path=($GOPATH/bin $GOENV_ROOT/bin $HOME/.cargo/bin $path)
+export HOMEBREW_AUTO_UPDATE_SECS=86401
+export IDF_PATH="$HOME/esp/ESP8266_RTOS_SDK"
