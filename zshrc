@@ -41,6 +41,9 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
+# homebrew set up
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
@@ -98,8 +101,6 @@ bindkey "^P" "prj"
 #export GIT_PAGER="git diff --color | diff-highlight | less -SFEX"
 export GIT_PAGER="less -SFEX"
 export EDITOR='vim'
-RPROMPT='$(vi_mode_prompt_info) [%*]'
-PROMPT="$PROMPT"
 
 eval "$(rbenv init - --no-rehash)"
 alias vim='mvim -v'
