@@ -45,3 +45,6 @@ au BufNewFile,BufRead *.py
     \ set expandtab |
     \ set autoindent |
     \ set fileformat=unix
+
+" use new snipMate parser - v0 is deprecated
+let g:snipMate = { 'snippet_version' : 1 }
