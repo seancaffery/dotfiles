@@ -13,14 +13,9 @@ function! SelectaCommand(choice_command, selecta_args, vim_command)
   exec a:vim_command . " " . selection
 endfunction
 
-function! PassengerRestart()
-  let blah = system("touch tmp/restart.txt")
-endfunction
-
 " Find all files in all non-dot directories starting in the working directory.
 " Fuzzy select one of those. Open the selected file with :e.
 nnoremap <C-p> :call SelectaCommand("find * -type f ! -path 'npm-packages-offline-cache/*' ! -path 'vendor/bundle/*' ! -path '*/fonts/*' ! -path 'tmp/*' ! -path 'dist/*' ! -path 'vendor/assets/*'  ! -path '*egg-info*' ! -path 'virtual_env/*'  ! -path '*.pyc' ! -path 'node_modules/*' ! -path '*.gem' ! -path '*.swp' ! -path '*images*' ! -path '*.class' ! -path 'app/assets/media*' ! -path 'app/assets/images*' ! -path '*/cache/*' ! -path 'vendor/*' ! -path 'bower_components/*' ", "", ":e")<cr>
-nnoremap <leader>r :call PassengerRestart()<cr>
 
 " syntastic options
 let g:syntastic_ruby_checkers=['rubocop']
