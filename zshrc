@@ -103,8 +103,8 @@ export GIT_PAGER="less -SFEX"
 export EDITOR='vim'
 
 eval "$(rbenv init - --no-rehash)"
-alias vim='mvim -v'
-alias vi='mvim -v'
+alias vim='nvim'
+alias vi='nvim'
 alias bi='bundle check || bundle install --local --quiet && echo "Bundle complete"'
 alias cr='crystal run --release'
 unalias irb
