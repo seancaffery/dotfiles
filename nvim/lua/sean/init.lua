@@ -1,3 +1,6 @@
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
 require("sean.packer")
 require("sean.set")
 require("sean.remap")
