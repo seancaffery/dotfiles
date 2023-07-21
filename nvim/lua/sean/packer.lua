@@ -85,6 +85,7 @@ return require('packer').startup(function(use)
       require('Comment').setup()
     end
   }
+  use {"ellisonleao/glow.nvim", config = function() require("glow").setup() end}
 
 end)
 
