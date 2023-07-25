@@ -2,7 +2,7 @@
 vim.g.mapleader = ","
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 vim.keymap.set("i", "jj", "<ESC>")
-vim.keymap.set("n", "<leader>t", "<cmd>NvimTreeToggle<cr>")
+vim.keymap.set("n", "<leader>t", "<cmd>NvimTreeFindFileToggle<cr>")
 vim.keymap.set("n", "<leader><space>", "<cmd>noh<cr>")
 
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
