@@ -29,8 +29,44 @@ require('mason-lspconfig').setup({
   },
   handlers = {
     lsp.default_setup,
+    bashls = function()
+      require('lspconfig').bashls.setup({})
+    end,
+    efm = function()
+      require 'lspconfig'.efm.setup {}
+    end,
+    gopls = function()
+      require 'lspconfig'.gopls.setup {}
+    end,
     lua_ls = function()
       require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
+    end,
+    ruby_ls = function()
+      require('lspconfig').ruby_ls.setup({})
+    end,
+    rust_analyzer = function()
+      require('lspconfig').rust_analyzer.setup({})
+    end,
+    terraformls = function()
+      require('lspconfig').terraformls.setup({})
+    end,
+    tsserver = function()
+      local function organize_imports()
+        local params = {
+          command = "_typescript.organizeImports",
+          arguments = { vim.api.nvim_buf_get_name(0) },
+          title = ""
+        }
+        vim.lsp.buf.execute_command(params)
+      end
+      require('lspconfig').tsserver.setup {
+        commands = {
+          OrganizeImports = {
+            organize_imports,
+            description = "Organize Imports"
+          },
+        }
+      }
     end,
   }
 })
@@ -49,21 +85,3 @@ cmp.setup({
     ['<C-Space>'] = cmp.mapping.complete(),
   },
 })
-
-local function organize_imports()
-  local params = {
-    command = "_typescript.organizeImports",
-    arguments = { vim.api.nvim_buf_get_name(0) },
-    title = ""
-  }
-  vim.lsp.buf.execute_command(params)
-end
-
-require('lspconfig').tsserver.setup {
-  commands = {
-    OrganizeImports = {
-      organize_imports,
-      description = "Organize Imports"
-    },
-  }
-}
