@@ -11,3 +11,4 @@ require('telescope').setup{
     path_display = {'smart'}
   }
 }
+require('telescope').load_extension('fzf')

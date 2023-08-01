@@ -86,6 +86,7 @@ return require('packer').startup(function(use)
     end
   }
   use {"ellisonleao/glow.nvim", config = function() require("glow").setup() end}
+  use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
 
 end)
 
