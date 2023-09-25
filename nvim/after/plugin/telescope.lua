@@ -6,9 +6,9 @@ vim.keymap.set('n', '<leader>ps', builtin.live_grep, {})
 vim.keymap.set('n', '<leader>pg', builtin.grep_string, {})
 vim.keymap.set('n', '<leader>vh', builtin.help_tags, {})
 
-require('telescope').setup{
+require('telescope').setup {
   defaults = {
-    path_display = {'smart'}
+    path_display = { truncate = 2 }
   }
 }
 require('telescope').load_extension('fzf')
