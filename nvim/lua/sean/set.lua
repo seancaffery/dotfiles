@@ -11,10 +11,11 @@ vim.opt.expandtab      = true
 vim.opt.smartindent    = true
 
 vim.opt.wrap           = false
-vim.opt.backspace      = {"indent", "eol", "start"}           -- " (indent,eol,start) backspace through everything in insert mode
+vim.opt.backspace      = { "indent", "eol", "start" } -- " (indent,eol,start) backspace through everything in insert mode
 
-vim.opt.backupdir      = "~/.vim/_backup//" --" where to put backup files.
-vim.opt.directory      = "~/.vim/_temp//" --" where to put swap files.
+vim.opt.swapfile       = false
+vim.opt.backup         = false
+
 vim.opt.undodir        = os.getenv("HOME") .. "/.vim/undodir"
 vim.opt.undofile       = true
 
