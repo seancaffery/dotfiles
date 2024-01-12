@@ -1,6 +1,6 @@
 [core]
 	excludesfile = ~/.gitignore
-  editor=/usr/bin/vim
+  editor=/opt/homebrew/bin/nvim
 
 [hub]
 protocol = https
