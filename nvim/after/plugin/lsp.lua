@@ -83,5 +83,6 @@ cmp.setup({
   },
   mapping = {
     ['<C-Space>'] = cmp.mapping.complete(),
+    ['<C-y>'] = cmp.mapping.confirm(),
   },
 })
