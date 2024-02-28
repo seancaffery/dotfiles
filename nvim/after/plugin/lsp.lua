@@ -81,8 +81,8 @@ cmp.setup({
     { name = 'nvim_lsp' },
     { name = 'nvim_lua' },
   },
-  mapping = {
+  mapping = cmp.mapping.preset.insert {
     ['<C-Space>'] = cmp.mapping.complete(),
-    ['<C-y>'] = cmp.mapping.confirm(),
+    ['<C-y>'] = cmp.mapping.confirm({ select = true }),
   },
 })
