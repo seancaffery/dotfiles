@@ -33,3 +33,4 @@ vim.opt.isfname:append("@-@")
 vim.opt.updatetime = 50
 
 vim.opt.list       = true -- " Show invisible characters
+vim.opt.listchars="tab:  "
