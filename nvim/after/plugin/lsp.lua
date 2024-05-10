@@ -101,6 +101,8 @@ lsp.on_attach(function(client, bufnr)
   vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
 end)
 
+require 'lspconfig'.syntax_tree.setup {}
+
 require('mason').setup({})
 require('mason-lspconfig').setup({
   ensure_installed = {
@@ -124,9 +126,9 @@ require('mason-lspconfig').setup({
         settings = {
           rootMarkers = { ".git/" },
           languages = {
-            ruby = {
-              { formatCommand = "rubyfmt", formatStdin = true }
-            }
+            -- ruby = {
+            --   { formatCommand = "rubyfmt", formatStdin = true }
+            -- }
           }
         }
       }
