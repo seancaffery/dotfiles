@@ -163,6 +163,11 @@ require('mason-lspconfig').setup({
         vim.lsp.buf.execute_command(params)
       end
       require('lspconfig').tsserver.setup {
+        settings = {
+          typescript = {
+            format = { insertSpaceAfterOpeningAndBeforeClosingEmptyBraces = false },
+            preferences = { quoteStyle = "single" }
+          } },
         commands = {
           OrganizeImports = {
             organize_imports,
