@@ -55,6 +55,7 @@ lsp.on_attach(function(client, bufnr)
   vim.keymap.set("n", "<leader>vca", function() vim.lsp.buf.code_action() end, opts)
   vim.keymap.set("n", "<leader>vrr", function() vim.lsp.buf.references() end, opts)
   vim.keymap.set("n", "<leader>vrn", function() vim.lsp.buf.rename() end, opts)
+  vim.keymap.set("n", "<leader>ih", function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled()) end, opts)
   vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
 end)
 
@@ -91,7 +92,18 @@ require('mason-lspconfig').setup({
       }
     end,
     gopls = function()
-      require 'lspconfig'.gopls.setup {}
+      require 'lspconfig'.gopls.setup {
+        settings = {
+          gopls = {
+            hints = {
+              rangeVariableTypes = true,
+              functionTypeParameters = true,
+              compositeLiteralTypes = true,
+              parameterNames = true,
+            }
+          },
+        },
+      }
     end,
     lua_ls = function()
       require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
@@ -122,8 +134,19 @@ require('mason-lspconfig').setup({
         settings = {
           typescript = {
             format = { insertSpaceAfterOpeningAndBeforeClosingEmptyBraces = false },
-            preferences = { quoteStyle = "single" }
-          } },
+            preferences = {
+              quotePreference = "single",
+            },
+            inlayHints = {
+              includeInlayParameterNameHints = 'all',
+              includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+              includeInlayFunctionParameterTypeHints = true,
+              includeInlayVariableTypeHints = true,
+              includeInlayPropertyDeclarationTypeHints = true,
+              includeInlayFunctionLikeReturnTypeHints = true,
+              includeInlayEnumMemberValueHints = true,
+              importModuleSpecifierPreference = 'non-relative',
+            } } },
         commands = {
           OrganizeImports = {
             organize_imports,
