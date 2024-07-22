@@ -100,7 +100,8 @@ require('mason-lspconfig').setup({
               functionTypeParameters = true,
               compositeLiteralTypes = true,
               parameterNames = true,
-            }
+            },
+            usePlaceholders = true,
           },
         },
       }
