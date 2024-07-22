@@ -1,9 +1,9 @@
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
-require("sean.packer")
-require("sean.set")
 require("sean.remap")
+require("sean.lazy")
+require("sean.set")
 
 local augroup = vim.api.nvim_create_augroup
 local ThePrimeagenGroup = augroup('ThePrimeagen', {})
