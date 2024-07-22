@@ -168,6 +168,8 @@ cmp.setup({
     { name = 'path' },
     { name = 'nvim_lsp' },
     { name = 'nvim_lua' },
+    { name = 'luasnip' },
+    { name = 'buffer',  keyword_length = 5 },
   },
   mapping = cmp.mapping.preset.insert {
     ['<C-Space>'] = cmp.mapping.complete(),
