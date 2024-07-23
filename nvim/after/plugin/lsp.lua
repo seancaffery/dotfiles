@@ -1,5 +1,3 @@
-local lsp = require('lsp-zero').preset({})
-
 -- adds ShowRubyDeps command to show dependencies in the quickfix list.
 -- add the `all` argument to show indirect dependencies as well
 local function add_ruby_deps_command(client, bufnr)
@@ -41,23 +39,43 @@ local function add_ruby_deps_command(client, bufnr)
     })
 end
 
+-- configure default LSP capabilities so they don't have to be passed to each server
+-- this is a replication of what lsp-zero does
+local lsp_capabilities = require('cmp_nvim_lsp').default_capabilities()
+local util = require('lspconfig.util')
+local base = util.default_config.capabilities
+local capabilities = vim.tbl_deep_extend(
+  'force',
+  base,
+  lsp_capabilities
+)
+util.default_config.capabilities = capabilities
 
-lsp.on_attach(function(client, bufnr)
-  local opts = { buffer = bufnr, remap = false }
+local default_setup = function(server)
+  require('lspconfig')[server].setup({
+    capabilities = lsp_capabilities,
+  })
+end
 
-  vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
-  vim.keymap.set("n", "gi", function() vim.lsp.buf.implementation() end, opts)
-  vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
-  vim.keymap.set("n", "<leader>vws", function() vim.lsp.buf.workspace_symbol() end, opts)
-  vim.keymap.set("n", "<leader>vd", function() vim.diagnostic.open_float() end, opts)
-  vim.keymap.set("n", "[d", function() vim.diagnostic.goto_next() end, opts)
-  vim.keymap.set("n", "]d", function() vim.diagnostic.goto_prev() end, opts)
-  vim.keymap.set("n", "<leader>vca", function() vim.lsp.buf.code_action() end, opts)
-  vim.keymap.set("n", "<leader>vrr", function() vim.lsp.buf.references() end, opts)
-  vim.keymap.set("n", "<leader>vrn", function() vim.lsp.buf.rename() end, opts)
-  vim.keymap.set("n", "<leader>ih", function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled()) end, opts)
-  vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
-end)
+vim.api.nvim_create_autocmd('LspAttach', {
+  desc = 'LSP actions',
+  callback = function(event)
+    local opts = { buffer = event.buf, remap = false }
+
+    vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
+    vim.keymap.set("n", "gi", function() vim.lsp.buf.implementation() end, opts)
+    vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
+    vim.keymap.set("n", "<leader>vws", function() vim.lsp.buf.workspace_symbol() end, opts)
+    vim.keymap.set("n", "<leader>vd", function() vim.diagnostic.open_float() end, opts)
+    vim.keymap.set("n", "[d", function() vim.diagnostic.goto_next() end, opts)
+    vim.keymap.set("n", "]d", function() vim.diagnostic.goto_prev() end, opts)
+    vim.keymap.set("n", "<leader>vca", function() vim.lsp.buf.code_action() end, opts)
+    vim.keymap.set("n", "<leader>vrr", function() vim.lsp.buf.references() end, opts)
+    vim.keymap.set("n", "<leader>vrn", function() vim.lsp.buf.rename() end, opts)
+    vim.keymap.set("n", "<leader>ih", function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled()) end, opts)
+    vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
+  end
+})
 
 require 'lspconfig'.syntax_tree.setup {}
 
@@ -74,7 +92,7 @@ require('mason-lspconfig').setup({
     'tsserver',
   },
   handlers = {
-    lsp.default_setup,
+    default_setup,
     bashls = function()
       require('lspconfig').bashls.setup({})
     end,
@@ -107,7 +125,7 @@ require('mason-lspconfig').setup({
       }
     end,
     lua_ls = function()
-      require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
+      require('lspconfig').lua_ls.setup({})
     end,
     ruby_lsp = function()
       require('lspconfig').ruby_lsp.setup({
@@ -159,10 +177,7 @@ require('mason-lspconfig').setup({
   }
 })
 
-require('lsp-zero').extend_cmp()
-
 local cmp = require('cmp')
-
 cmp.setup({
   sources = {
     { name = 'path' },
@@ -174,6 +189,11 @@ cmp.setup({
   mapping = cmp.mapping.preset.insert {
     ['<C-Space>'] = cmp.mapping.complete(),
     ['<C-y>'] = cmp.mapping.confirm({ select = true }),
+  },
+  snippet = {
+    expand = function(args)
+      require('luasnip').lsp_expand(args.body)
+    end,
   },
 })
 
