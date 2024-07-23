@@ -101,11 +101,11 @@ require('mason-lspconfig').setup({
         init_options = { documentFormatting = true },
         settings = {
           rootMarkers = { ".git/" },
-          languages = {
-            -- ruby = {
-            --   { formatCommand = "rubyfmt", formatStdin = true }
-            -- }
-          }
+          -- languages = {
+          -- ruby = {
+          --   { formatCommand = "rubyfmt", formatStdin = true }
+          -- }
+          -- }
         }
       }
     end,
