@@ -76,8 +76,10 @@ require("lazy").setup({
     { 'hrsh7th/cmp-nvim-lua' },
 
     -- Snippets
-    { 'L3MON4D3/LuaSnip' },
-    { 'rafamadriz/friendly-snippets' },
+    {
+      'L3MON4D3/LuaSnip',
+      dependencies = { "rafamadriz/friendly-snippets" }
+    },
 
     { "folke/zen-mode.nvim" },
     { "eandrju/cellular-automaton.nvim" },
