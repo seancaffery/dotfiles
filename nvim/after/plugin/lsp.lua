@@ -77,8 +77,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
   end
 })
 
-require 'lspconfig'.syntax_tree.setup {}
-
 require('mason').setup({})
 require('mason-lspconfig').setup({
   ensure_installed = {
@@ -132,6 +130,10 @@ require('mason-lspconfig').setup({
         on_attach = function(client, buffer)
           add_ruby_deps_command(client, buffer)
         end,
+        init_options = {
+          formatter = 'standard',
+          linters = { 'standard' },
+        },
       })
     end,
     rust_analyzer = function()
