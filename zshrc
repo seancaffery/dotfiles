@@ -92,7 +92,7 @@ zeust () {
 }
 
 function prj() {
-  cd $({ find ~/code -maxdepth 1 -type d } | selecta)
+  cd $({ find ~/code -maxdepth 2 -type d } | selecta)
   zle reset-prompt
 }
 zle -N prj
