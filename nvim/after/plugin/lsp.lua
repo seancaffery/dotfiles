@@ -87,7 +87,7 @@ require('mason-lspconfig').setup({
     'ruby_lsp',
     'rust_analyzer',
     'terraformls',
-    'tsserver',
+    'ts_ls',
   },
   handlers = {
     default_setup,
@@ -142,7 +142,7 @@ require('mason-lspconfig').setup({
     terraformls = function()
       require('lspconfig').terraformls.setup({})
     end,
-    tsserver = function()
+    ts_ls = function()
       local function organize_imports()
         local params = {
           command = "_typescript.organizeImports",
@@ -151,7 +151,7 @@ require('mason-lspconfig').setup({
         }
         vim.lsp.buf.execute_command(params)
       end
-      require('lspconfig').tsserver.setup {
+      require('lspconfig').ts_ls.setup {
         settings = {
           typescript = {
             format = { insertSpaceAfterOpeningAndBeforeClosingEmptyBraces = false },
