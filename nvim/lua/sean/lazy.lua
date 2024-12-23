@@ -99,6 +99,12 @@ require("lazy").setup({
     },
     { "ellisonleao/glow.nvim",                    config = function() require("glow").setup() end },
     { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
+    {
+      'vim-test/vim-test',
+      dependencies = {
+        'preservim/vimux',
+      },
+    },
   },
   -- Configure any other settings here. See the documentation for more details.
   -- colorscheme that will be used when installing plugins.
