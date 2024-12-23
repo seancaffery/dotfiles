@@ -82,6 +82,7 @@ require('mason-lspconfig').setup({
   ensure_installed = {
     'bashls',
     'efm',
+    'golangci_lint_ls',
     'gopls',
     'lua_ls',
     'ruby_lsp',
@@ -141,6 +142,9 @@ require('mason-lspconfig').setup({
     end,
     terraformls = function()
       require('lspconfig').terraformls.setup({})
+    end,
+    golangci_lint_ls = function()
+      require 'lspconfig'.golangci_lint_ls.setup({})
     end,
     ts_ls = function()
       local function organize_imports()
