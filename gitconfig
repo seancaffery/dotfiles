@@ -27,5 +27,6 @@ protocol = https
 [user]
 	name = Sean Caffery
 	email = sean@lineonpoint.com
+	useConfigOnly = true
 [init]
 	defaultBranch = main
