@@ -36,6 +36,7 @@ require("lazy").setup({
     },
     {
       "folke/trouble.nvim",
+      dependencies = { "nvim-tree/nvim-web-devicons" },
       opts = {
         auto_close = true,
       },
@@ -55,7 +56,6 @@ require("lazy").setup({
     { "tpope/vim-fugitive" },
     { "nvim-treesitter/nvim-treesitter-context" },
 
-    { 'VonHeikemen/lsp-zero.nvim',              branch = 'v3.x' },
     -- LSP Support
     { 'neovim/nvim-lspconfig' },
     { 'williamboman/mason.nvim' },
