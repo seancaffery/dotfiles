@@ -1,0 +1,72 @@
+let mapleader=","
+
+imap jj <Esc>
+nmap <leader><space> :nohlsearch<cr>
+vmap K :m '<-2<CR>gv=gv
+vmap J :m '>+1<CR>gv=gv
+nmap <C-d> <C-d>zz
+nmap <C-u> <C-u>zz
+nmap n nzzzv
+nmap N Nzzzv
+nmap <leader>/ <Action>(CommentByLineComment)
+
+" lsp
+nmap ]d <Action>(GotoNextError)
+nmap [d <Action>(GotoPreviousError)
+" Goto Definition
+nmap gd <Action>(GotoDeclaration)
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" References
+nmap gr <Action>(FindUsages)
+" Goto Implementation
+nmap gi <Action>(GotoImplementation)
+" Signature Help
+nmap gK <Action>(ParameterInfo)
+" Signature Help in Insert Mode
+imap <C-k> <C-o><Action>(ParameterInfo)
+" Code Action
+nmap <leader>ca <Action>(RefactoringMenu)
+vmap <leader>ca <Action>(RefactoringMenu)
+nmap <leader>vrn <Action>(RenameElement)
+
+" Confirm to save changes before exiting modified buffer
+set formatoptions=jcroqlnt
+" Print line number
+set number
+" Relative line numbers
+set relativenumber
+" Lines of context
+set scrolloff=8
+" Round indent
+set shiftround
+" Columns of context
+set sidescrolloff=8
+" which-key says to set this high, or set notimeout
+set timeoutlen=10000
+set notimeout
+set undolevels=10000
+" Disable line wrap
+set nowrap
+" Enable copy/paste to/from system keyboard
+set clipboard+=unnamedplus
+" Better search
+set hlsearch
+set incsearch
+set ignorecase
+set smartcase
+
+set list
+
+" Neovim settings that differ from Vim
+" https://neovim.io/doc/user/diff.html
+" https://github.com/mikeslattery/nvim-defaults.vim/blob/main/plugin/.vimrc
+
+set backspace=indent,eol,start
+set formatoptions=tcqj
+set listchars=tab:>\ ,trail:-,nbsp:+
+set shortmess=filnxtToOF
+
+set showmode
+set showcmd
+set visualbell
+set highlightedyank
