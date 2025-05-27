@@ -55,7 +55,6 @@ path=($HOME/esp/xtensa-lx106-elf/bin $HOME/bin bin node_modules/.bin $path)
 
 export ZSH_COMPDUMP="${ZDOTDIR:-${HOME}}/.zcompdump-${HOST}-${ZSH_VERSION}"
 source $ZSH/oh-my-zsh.sh
-bindkey '^R' history-incremental-search-backward
 bindkey '^[[A' up-line-or-search
 bindkey '^[[B' down-line-or-search
 
@@ -144,4 +143,5 @@ unset __conda_setup
 
 source <(kubectl completion zsh)
 
-export NODE_EXTRA_CA_CERTS="$(mkcert -CAROOT)/rootCA.pem"
+source <(fzf --zsh)
+
