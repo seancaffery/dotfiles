@@ -51,11 +51,9 @@ local capabilities = vim.tbl_deep_extend(
 )
 util.default_config.capabilities = capabilities
 
-local default_setup = function(server)
-  require('lspconfig')[server].setup({
-    capabilities = lsp_capabilities,
-  })
-end
+vim.lsp.config('*', {
+  capabilities = lsp_capabilities,
+})
 
 vim.api.nvim_create_autocmd('LspAttach', {
   desc = 'LSP actions',
@@ -78,6 +76,11 @@ vim.api.nvim_create_autocmd('LspAttach', {
   end
 })
 
+local masonPath = require "mason-core.path"
+local function masonPackageBin(bin)
+  return { masonPath.bin_prefix(bin) }
+end
+
 require('mason').setup({})
 require('mason-lspconfig').setup({
   ensure_installed = {
@@ -90,102 +93,98 @@ require('mason-lspconfig').setup({
     'rust_analyzer',
     'terraformls',
     'ts_ls',
-  },
-  handlers = {
-    default_setup,
-    bashls = function()
-      require('lspconfig').bashls.setup({})
-    end,
-    efm = function()
-      require 'lspconfig'.efm.setup {
-        init_options = { documentFormatting = true },
-        settings = {
-          rootMarkers = { ".git/" },
-          languages = {
-            -- ruby = {
-            --   { formatCommand = "rubyfmt", formatStdin = true }
-            -- }
-            sql = {
-              { formatCommand = "pg_format", formatStdin = true }
-            }
-          }
-        }
-      }
-    end,
-    gopls = function()
-      require 'lspconfig'.gopls.setup {
-        settings = {
-          gopls = {
-            hints = {
-              rangeVariableTypes = true,
-              functionTypeParameters = true,
-              compositeLiteralTypes = true,
-              parameterNames = true,
-            },
-            usePlaceholders = true,
-          },
-        },
-      }
-    end,
-    lua_ls = function()
-      require('lspconfig').lua_ls.setup({})
-    end,
-    ruby_lsp = function()
-      require('lspconfig').ruby_lsp.setup({
-        on_attach = function(client, buffer)
-          add_ruby_deps_command(client, buffer)
-        end,
-        init_options = {
-          formatter = 'standard',
-          linters = { 'standard' },
-        },
-      })
-    end,
-    rust_analyzer = function()
-      require('lspconfig').rust_analyzer.setup({})
-    end,
-    terraformls = function()
-      require('lspconfig').terraformls.setup({})
-    end,
-    golangci_lint_ls = function()
-      require 'lspconfig'.golangci_lint_ls.setup({})
-    end,
-    ts_ls = function()
-      local function organize_imports()
-        local params = {
-          command = "_typescript.organizeImports",
-          arguments = { vim.api.nvim_buf_get_name(0) },
-          title = ""
-        }
-        vim.lsp.buf.execute_command(params)
-      end
-      require('lspconfig').ts_ls.setup {
-        settings = {
-          typescript = {
-            format = { insertSpaceAfterOpeningAndBeforeClosingEmptyBraces = false },
-            preferences = {
-              quotePreference = "single",
-            },
-            inlayHints = {
-              includeInlayParameterNameHints = 'all',
-              includeInlayParameterNameHintsWhenArgumentMatchesName = true,
-              includeInlayFunctionParameterTypeHints = true,
-              includeInlayVariableTypeHints = true,
-              includeInlayPropertyDeclarationTypeHints = true,
-              includeInlayFunctionLikeReturnTypeHints = true,
-              includeInlayEnumMemberValueHints = true,
-              importModuleSpecifierPreference = 'non-relative',
-            } } },
-        commands = {
-          OrganizeImports = {
-            organize_imports,
-            description = "Organize Imports"
-          },
-        }
-      }
-    end,
   }
 })
+local no_config_servers = { 'bashls', 'rust_analyzer', 'terraformls', 'golangci_lint_ls' }
+for i, server in pairs(no_config_servers) do
+  vim.lsp.config(server, {})
+  vim.lsp.enable(server)
+end
+
+vim.lsp.config('efm', {
+  init_options = { documentFormatting = true },
+  cmd = masonPackageBin("efm-langserver"),
+  settings = {
+    rootMarkers = { ".git/" },
+    languages = {
+      -- ruby = {
+      --   { formatCommand = "rubyfmt", formatStdin = true }
+      -- }
+      sql = {
+        { formatCommand = "pg_format", formatStdin = true }
+      }
+    }
+  }
+})
+vim.lsp.enable('efm')
+
+vim.lsp.config("lua_ls", { cmd = masonPackageBin("lua-language-server") })
+vim.lsp.enable("lua_ls")
+
+vim.lsp.config('ruby_lsp', {
+  on_attach = function(client, buffer)
+    add_ruby_deps_command(client, buffer)
+  end,
+  init_options = {
+    formatter = 'standard',
+    linters = { 'standard' },
+  },
+})
+vim.lsp.enable('ruby_lsp')
+
+local function organize_imports()
+  local params = {
+    command = "_typescript.organizeImports",
+    arguments = { vim.api.nvim_buf_get_name(0) },
+    title = ""
+  }
+  vim.lsp.buf.execute_command(params)
+end
+
+vim.lsp.config('ts_ls', {
+  cmd = masonPackageBin("typescript-language-server"),
+  settings = {
+    typescript = {
+      format = { insertSpaceAfterOpeningAndBeforeClosingEmptyBraces = false },
+      preferences = {
+        quotePreference = "single",
+      },
+      inlayHints = {
+        includeInlayParameterNameHints = 'all',
+        includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+        includeInlayFunctionParameterTypeHints = true,
+        includeInlayVariableTypeHints = true,
+        includeInlayPropertyDeclarationTypeHints = true,
+        includeInlayFunctionLikeReturnTypeHints = true,
+        includeInlayEnumMemberValueHints = true,
+        importModuleSpecifierPreference = 'non-relative',
+      }
+    }
+  },
+  commands = {
+    OrganizeImports = {
+      organize_imports,
+      description = "Organize Imports"
+    },
+  }
+})
+vim.lsp.enable('ts_ls')
+
+vim.lsp.config('gopls', {
+  cmd = masonPackageBin("gopls"),
+  settings = {
+    gopls = {
+      hints = {
+        rangeVariableTypes = true,
+        functionTypeParameters = true,
+        compositeLiteralTypes = true,
+        parameterNames = true,
+      },
+      usePlaceholders = true,
+    },
+  },
+})
+vim.lsp.enable('gopls')
 
 require("luasnip.loaders.from_vscode").lazy_load()
 
