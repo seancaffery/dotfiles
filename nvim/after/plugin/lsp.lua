@@ -76,34 +76,8 @@ vim.api.nvim_create_autocmd('LspAttach', {
   end
 })
 
-local masonPath = require "mason-core.path"
-local function masonPackageBin(bin)
-  return { masonPath.bin_prefix(bin) }
-end
-
-require('mason').setup({})
-require('mason-lspconfig').setup({
-  ensure_installed = {
-    'bashls',
-    'efm',
-    'golangci_lint_ls',
-    'gopls',
-    'lua_ls',
-    'ruby_lsp',
-    'rust_analyzer',
-    'terraformls',
-    'ts_ls',
-  }
-})
-local no_config_servers = { 'bashls', 'rust_analyzer', 'terraformls', 'golangci_lint_ls' }
-for i, server in pairs(no_config_servers) do
-  vim.lsp.config(server, {})
-  vim.lsp.enable(server)
-end
-
 vim.lsp.config('efm', {
   init_options = { documentFormatting = true },
-  cmd = masonPackageBin("efm-langserver"),
   settings = {
     rootMarkers = { ".git/" },
     languages = {
@@ -116,10 +90,6 @@ vim.lsp.config('efm', {
     }
   }
 })
-vim.lsp.enable('efm')
-
-vim.lsp.config("lua_ls", { cmd = masonPackageBin("lua-language-server") })
-vim.lsp.enable("lua_ls")
 
 vim.lsp.config('ruby_lsp', {
   on_attach = function(client, buffer)
@@ -130,7 +100,6 @@ vim.lsp.config('ruby_lsp', {
     linters = { 'standard' },
   },
 })
-vim.lsp.enable('ruby_lsp')
 
 local function organize_imports()
   local params = {
@@ -142,7 +111,6 @@ local function organize_imports()
 end
 
 vim.lsp.config('ts_ls', {
-  cmd = masonPackageBin("typescript-language-server"),
   settings = {
     typescript = {
       format = { insertSpaceAfterOpeningAndBeforeClosingEmptyBraces = false },
@@ -168,10 +136,8 @@ vim.lsp.config('ts_ls', {
     },
   }
 })
-vim.lsp.enable('ts_ls')
 
 vim.lsp.config('gopls', {
-  cmd = masonPackageBin("gopls"),
   settings = {
     gopls = {
       hints = {
@@ -184,8 +150,21 @@ vim.lsp.config('gopls', {
     },
   },
 })
-vim.lsp.enable('gopls')
 
+require('mason').setup({})
+require('mason-lspconfig').setup({
+  ensure_installed = {
+    'bashls',
+    'efm',
+    'golangci_lint_ls',
+    'gopls',
+    'lua_ls',
+    'ruby_lsp',
+    'rust_analyzer',
+    'terraformls',
+    'ts_ls',
+  }
+})
 require("luasnip.loaders.from_vscode").lazy_load()
 
 local ls = require("luasnip")
