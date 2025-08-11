@@ -29,6 +29,11 @@ nmap <leader>ca <Action>(RefactoringMenu)
 vmap <leader>ca <Action>(RefactoringMenu)
 nmap <leader>vrn <Action>(RenameElement)
 
+nmap <leader>t <Action>(ActivateProjectToolWindow)
+
+nmap <leader>kw <Action>(CloseAllEditors)
+nmap <leader>of <Action>(RecentFiles)
+
 " Confirm to save changes before exiting modified buffer
 set formatoptions=jcroqlnt
 " Print line number
