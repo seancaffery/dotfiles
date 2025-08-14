@@ -91,7 +91,10 @@ zeust () {
 }
 
 function prj() {
-  cd $({ find ~/code -maxdepth 2 -type d } | selecta)
+  dir=$({ find ~/code -maxdepth 2 -type d } | fzf --tmux center,50%,50% )
+  if [ ! -z $dir ]; then
+    cd $dir
+  fi
   zle reset-prompt
 }
 zle -N prj
