@@ -23,7 +23,7 @@ require("lazy").setup({
     -- { import = "plugins" },
     {
       'nvim-telescope/telescope.nvim',
-      branch = '0.1.x',
+      branch = 'master',
       -- or                            , tag = '0.1.x',
       dependencies = { { 'nvim-lua/plenary.nvim' } }
     },
