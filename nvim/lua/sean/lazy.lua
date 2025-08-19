@@ -100,10 +100,33 @@ require("lazy").setup({
     { "ellisonleao/glow.nvim",                    config = function() require("glow").setup() end },
     { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
     {
-      'vim-test/vim-test',
+      "nvim-neotest/neotest",
       dependencies = {
-        'preservim/vimux',
+        "nvim-neotest/nvim-nio",
+        "nvim-lua/plenary.nvim",
+        "antoinemadec/FixCursorHold.nvim",
+        "nvim-treesitter/nvim-treesitter",
+        { "fredrikaverpil/neotest-golang", version = "*" },
       },
+      config = function()
+        local neotest_golang_opts = {}
+        require("neotest").setup({
+          adapters = {
+            require("neotest-golang")(neotest_golang_opts),
+          },
+          status = { virtual_text = true },
+          output = { open_on_run = true },
+          quickfix = {
+            open = function()
+              if LazyVim.has("trouble.nvim") then
+                require("trouble").open({ mode = "quickfix", focus = false })
+              else
+                vim.cmd("copen")
+              end
+            end,
+          },
+        })
+      end,
     },
   },
   -- Configure any other settings here. See the documentation for more details.
