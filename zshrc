@@ -107,7 +107,7 @@ export EDITOR='vim'
 eval "$(rbenv init - --no-rehash)"
 alias vim='nvim'
 alias vi='nvim'
-alias bi='bundle check || bundle install --local --quiet && echo "Bundle complete"'
+alias bi='bundle check || bundle install --prefer-local --quiet && echo "Bundle complete"'
 alias cr='crystal run --release'
 unalias irb
 export PKG_CONFIG_PATH='/usr/local/opt/openssl/lib/pkgconfig'
