@@ -148,3 +148,10 @@ source <(kubectl completion zsh)
 
 source <(fzf --zsh)
 
+function dir() {
+  if [[ "$PWD" =~ "code/work/([[:alnum:]-]+)/" ]]; then
+    echo "$match[1]:"
+  fi
+}
+
+export PS1='%B$(dir)%b%{$fg[blue]%}%B%c%b%{$reset_color%} $(git_prompt_info)%(!.#.$) '
