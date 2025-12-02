@@ -91,7 +91,7 @@ zeust () {
 }
 
 function prj() {
-  dir=$({ find ~/code -maxdepth 2 -type d } | fzf --tmux center,50%,50% )
+  dir=$({ find ~/code/personal -maxdepth 1 -type d;  find ~/code/work -maxdepth 2 -type d } | fzf --tmux center,50%,50% )
   if [ ! -z $dir ]; then
     cd $dir
   fi
