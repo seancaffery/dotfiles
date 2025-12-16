@@ -55,6 +55,7 @@ require("lazy").setup({
     { "mbbill/undotree" },
     { "tpope/vim-fugitive" },
     { "nvim-treesitter/nvim-treesitter-context" },
+    { "towolf/vim-helm" },
 
     -- LSP Support
     {
