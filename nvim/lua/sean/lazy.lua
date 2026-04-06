@@ -25,7 +25,8 @@ require("lazy").setup({
       'nvim-telescope/telescope.nvim',
       branch = 'master',
       -- or                            , tag = '0.1.x',
-      dependencies = { { 'nvim-lua/plenary.nvim' } }
+      dependencies = { { 'nvim-lua/plenary.nvim' } },
+      vscode=true
     },
     {
       'rose-pine/neovim',
@@ -90,7 +91,8 @@ require("lazy").setup({
       'nvim-tree/nvim-tree.lua',
       dependencies = {
         'nvim-tree/nvim-web-devicons', -- optional
-      }
+      },
+      enabled = not vim.g.vscode
     },
     {
       'numToStr/Comment.nvim',
@@ -99,9 +101,10 @@ require("lazy").setup({
       end
     },
     { "ellisonleao/glow.nvim",                    config = function() require("glow").setup() end },
-    { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
+    { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make', enabled = not vim.g.vscode },
     {
       "nvim-neotest/neotest",
+      enabled = not vim.g.vscode,
       dependencies = {
         "nvim-neotest/nvim-nio",
         "nvim-lua/plenary.nvim",
