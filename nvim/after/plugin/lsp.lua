@@ -1,3 +1,7 @@
+if vim.g.vscode then
+  return
+end
+
 -- adds ShowRubyDeps command to show dependencies in the quickfix list.
 -- add the `all` argument to show indirect dependencies as well
 local function add_ruby_deps_command(client, bufnr)

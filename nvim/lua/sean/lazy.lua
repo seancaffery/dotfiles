@@ -26,7 +26,7 @@ require("lazy").setup({
       branch = 'master',
       -- or                            , tag = '0.1.x',
       dependencies = { { 'nvim-lua/plenary.nvim' } },
-      vscode=true
+      cond = not vim.g.vscode
     },
     {
       'rose-pine/neovim',
@@ -51,8 +51,14 @@ require("lazy").setup({
       end,
     },
     { "nvim-treesitter/playground" },
-    { "theprimeagen/harpoon" },
-    { "theprimeagen/refactoring.nvim" },
+    {
+      "theprimeagen/harpoon",
+      dependencies = { 'nvim-lua/plenary.nvim' }
+    },
+    {
+      "theprimeagen/refactoring.nvim",
+      dependencies = { 'nvim-lua/plenary.nvim' }
+    },
     { "mbbill/undotree" },
     { "tpope/vim-fugitive" },
     { "nvim-treesitter/nvim-treesitter-context" },
@@ -85,7 +91,10 @@ require("lazy").setup({
 
     { "folke/zen-mode.nvim" },
     { "eandrju/cellular-automaton.nvim" },
-    { "laytan/cloak.nvim" },
+    {
+      "laytan/cloak.nvim",
+      cond = not vim.g.vscode
+    },
     { "lewis6991/gitsigns.nvim" },
     {
       'nvim-tree/nvim-tree.lua',
@@ -100,8 +109,12 @@ require("lazy").setup({
         require('Comment').setup()
       end
     },
-    { "ellisonleao/glow.nvim",                    config = function() require("glow").setup() end },
-    { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make', enabled = not vim.g.vscode },
+    { "ellisonleao/glow.nvim",  config = function() require("glow").setup() end },
+    {
+      'nvim-telescope/telescope-fzf-native.nvim',
+      build = 'make',
+      enabled = not vim.g.vscode
+    },
     {
       "nvim-neotest/neotest",
       enabled = not vim.g.vscode,

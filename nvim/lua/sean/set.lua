@@ -1,4 +1,6 @@
-vim.opt.guicursor      = ""
+if not vim.g.vscode then
+  vim.opt.guicursor = ""
+end
 
 vim.opt.nu             = true
 vim.opt.relativenumber = true

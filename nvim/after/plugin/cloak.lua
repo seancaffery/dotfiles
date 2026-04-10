@@ -1,3 +1,7 @@
+if vim.g.vscode then
+  return
+end
+
 require("cloak").setup({
   enabled = true,
   cloak_character = "*",
