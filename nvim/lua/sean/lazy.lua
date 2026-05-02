@@ -60,8 +60,11 @@ require("lazy").setup({
       dependencies = { 'nvim-lua/plenary.nvim' }
     },
     {
-      "theprimeagen/refactoring.nvim",
-      dependencies = { 'nvim-lua/plenary.nvim' }
+      "ThePrimeagen/refactoring.nvim",
+      dependencies = {
+        "lewis6991/async.nvim",
+      },
+      lazy = false,
     },
     { "mbbill/undotree" },
     { "tpope/vim-fugitive" },
@@ -99,7 +102,10 @@ require("lazy").setup({
       "laytan/cloak.nvim",
       cond = not vim.g.vscode
     },
-    { "lewis6991/gitsigns.nvim" },
+    {
+      "lewis6991/gitsigns.nvim",
+      tag = "release",
+    },
     {
       'nvim-tree/nvim-tree.lua',
       dependencies = {
@@ -113,7 +119,7 @@ require("lazy").setup({
         require('Comment').setup()
       end
     },
-    { "ellisonleao/glow.nvim",  config = function() require("glow").setup() end },
+    { "ellisonleao/glow.nvim", config = function() require("glow").setup() end },
     {
       'nvim-telescope/telescope-fzf-native.nvim',
       build = 'make',
