@@ -46,13 +46,11 @@ require("lazy").setup({
         auto_close = true,
       },
     },
-
     {
-      'nvim-treesitter/nvim-treesitter',
-      build = function()
-        local ts_update = require('nvim-treesitter.install').update({ with_sync = true })
-        ts_update()
-      end,
+      'neovim-treesitter/nvim-treesitter',
+      dependencies = { 'neovim-treesitter/treesitter-parser-registry' },
+      lazy = false,
+      build = ':TSUpdate',
     },
     { "nvim-treesitter/playground" },
     {
