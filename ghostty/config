@@ -1,0 +1,20 @@
+theme = Rose Pine Moon
+mouse-hide-while-typing = true
+scrollback-limit = 1000000
+keybind = ctrl+n=new_window
+keybind = ctrl+h=goto_split:left
+keybind = ctrl+j=goto_split:bottom
+keybind = ctrl+k=goto_split:top
+keybind = ctrl+l=goto_split:right
+keybind = ctrl+a>h=new_split:left
+keybind = ctrl+a>j=new_split:down
+keybind = ctrl+a>k=new_split:up
+keybind = ctrl+a>l=new_split:right
+keybind = ctrl+a>z=toggle_split_zoom
+keybind = ctrl+a>n=next_tab
+keybind = ctrl+a>p=previous_tab
+keybind = ctrl+a>s=prompt_tab_title
+keybind = ctrl+a>shift+h=resize_split:left,20
+keybind = ctrl+a>shift+l=resize_split:right,20
+keybind = ctrl+a>shift+j=resize_split:down,20
+keybind = ctrl+a>shift+k=resize_split:up,20
