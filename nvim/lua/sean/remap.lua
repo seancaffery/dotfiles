@@ -6,6 +6,9 @@ vim.keymap.set("n", "<leader><space>", "<cmd>noh<cr>")
 
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
+-- cmd+c -> copy to system clipboard rather than cut
+vim.keymap.set('v', '<D-c>', '"+y<Esc>')
+
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("n", "J", "mzJ`z")
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
