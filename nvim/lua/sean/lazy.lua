@@ -50,12 +50,12 @@ require("lazy").setup({
       },
     },
     {
-      'neovim-treesitter/nvim-treesitter',
-      dependencies = { 'neovim-treesitter/treesitter-parser-registry' },
-      lazy = false,
-      build = ':TSUpdate',
+      "romus204/tree-sitter-manager.nvim",
+      dependencies = {}, -- tree-sitter CLI must be installed system-wide
+      config = function()
+        require("tree-sitter-manager").setup()
+      end,
     },
-    { "nvim-treesitter/playground" },
     {
       "theprimeagen/harpoon",
       dependencies = { 'nvim-lua/plenary.nvim' }
@@ -69,7 +69,6 @@ require("lazy").setup({
     },
     { "mbbill/undotree" },
     { "tpope/vim-fugitive" },
-    { "nvim-treesitter/nvim-treesitter-context" },
     { "towolf/vim-helm" },
 
     -- LSP Support
@@ -133,7 +132,8 @@ require("lazy").setup({
         "nvim-neotest/nvim-nio",
         "nvim-lua/plenary.nvim",
         "antoinemadec/FixCursorHold.nvim",
-        "nvim-treesitter/nvim-treesitter",
+        "neovim-treesitter/nvim-treesitter",
+        "neovim-treesitter/treesitter-parser-registry",
         { "fredrikaverpil/neotest-golang", version = "*" },
       },
       config = function()

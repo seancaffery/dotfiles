@@ -1,32 +1,14 @@
-require'nvim-treesitter.configs'.setup {
-  -- A list of parser names, or "all"
-  ensure_installed = { "vimdoc", "javascript", "typescript", "c", "lua", "rust" },
-
-  -- Install parsers synchronously (only applied to `ensure_installed`)
-  sync_install = false,
-
-  -- Automatically install missing parsers when entering buffer
-  -- Recommendation: set to false if you don't have `tree-sitter` CLI installed locally
-  auto_install = true,
-
-  highlight = {
-    -- `false` will disable the whole extension
-    enable = true,
-
-    -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
-    -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
-    -- Using this option may slow down your editor, and you may see some duplicate highlights.
-    -- Instead of true it can also be a list of languages
-    additional_vim_regex_highlighting = false,
-  },
-}
-
-local parser_config = require'nvim-treesitter.parsers'.get_parser_configs()
-parser_config.gotmpl = {
-  install_info = {
-    url = "https://github.com/ngalaiko/tree-sitter-go-template",
-    files = {"src/parser.c"}
-  },
-  filetype = "gotmpl",
-  used_by = {"gohtmltmpl", "gotexttmpl", "gotmpl", "yaml"}
-}
+require("tree-sitter-manager").setup({
+  -- Default Options
+  parser_dir = vim.fn.stdpath("data") .. "/site/parser",
+  query_dir = vim.fn.stdpath("data") .. "/site/queries",
+  assume_installed = {}, -- ban languages
+  ensure_installed = { "vimdoc", "javascript", "typescript", "c", "lua", "rust", "go", "markdown" },
+  border = "rounded",    -- border style for the TUI window
+  auto_install = true,   -- auto-install when a new filetype is encountered
+  noauto_install = {},   -- ban from auto_install
+  highlight = true,      -- enable treesitter highlighting (use list to whitelist)
+  nohighlight = {},      -- ban from highlight
+  languages = {},        -- custom languages
+  nerdfont = true,       -- use Nerd Font icons in the manager UI
+})
