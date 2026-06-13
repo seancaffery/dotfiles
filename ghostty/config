@@ -11,7 +11,7 @@ keybind = ctrl+a>z=toggle_split_zoom
 keybind = ctrl+a>n=next_tab
 keybind = ctrl+a>p=previous_tab
 keybind = ctrl+a>s=prompt_tab_title
-keybind = ctrl+a>shift+h=resize_split:left,20
-keybind = ctrl+a>shift+l=resize_split:right,20
-keybind = ctrl+a>shift+j=resize_split:down,20
-keybind = ctrl+a>shift+k=resize_split:up,20
+keybind = ctrl+a>shift+h=resize_split:left,50
+keybind = ctrl+a>shift+l=resize_split:right,50
+keybind = ctrl+a>shift+j=resize_split:down,50
+keybind = ctrl+a>shift+k=resize_split:up,50
